@@ -23,3 +23,8 @@ dotnet ef database update -s API -p Persistence
 
 - Tools > Options > Text Editor > C# > Code Style > Naming
 - https://ardalis.com/configure-visual-studio-to-name-private-fields-with-underscore/
+
+## Architecture
+
+- Clean architecture
+- CQRS + Mediator pattern (https://code-maze.com/cqrs-mediatr-in-aspnet-core/)

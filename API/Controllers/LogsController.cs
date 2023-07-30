@@ -1,4 +1,5 @@
-﻿using Application.Logs;
+﻿using Application.Core;
+using Application.Logs;
 using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -10,41 +11,38 @@ namespace API.Controllers
     public class LogsController : BaseApiController
     {
         [HttpGet] // api/logs
-        public async Task<ActionResult<List<Log>>> GetLogs()
+        public async Task<IActionResult> GetLogs()
         {
             // Get logs directly from entity framework
             //return await _context.Logs.ToListAsync();
 
             // Get logs from mediator which uses entity framework
-            return await Mediator.Send(new List.Query());
+            return HandleResult(await Mediator.Send(new List.Query()));
         }
 
         [HttpGet("{id}")] // api/logs/{id}
-        public async Task<ActionResult<Log>> GetLog(Guid id)
+        public async Task<IActionResult> GetLog(Guid id)
         {
-            return await Mediator.Send(new Details.Query { Id = id });
+            return HandleResult(await Mediator.Send(new Details.Query { Id = id }));
         }
 
         [HttpPost] // api/logs
         public async Task<IActionResult> CreateLog(Log log)
         {
-            await Mediator.Send(new Create.Command { Log = log });
-            return Ok();
+            return HandleResult(await Mediator.Send(new Create.Command { Log = log }));
         }
 
         [HttpPut("{id}")] // api/logs/{id}
         public async Task<IActionResult> EditLog(Guid id, Log log)
         {
             log.Id = id;
-            await Mediator.Send(new Edit.Command { Log = log });
-            return Ok();
+            return HandleResult(await Mediator.Send(new Edit.Command { Log = log }));
         }
 
         [HttpDelete("{id}")] // api/logs/{id}
         public async Task<IActionResult> DeleteLog(Guid id)
         {
-            await Mediator.Send(new Delete.Command { Id = id });
-            return Ok();
+            return HandleResult(await Mediator.Send(new Delete.Command { Id = id }));
         }
     }
 }

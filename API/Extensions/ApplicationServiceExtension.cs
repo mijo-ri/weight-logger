@@ -1,5 +1,7 @@
 ﻿using Application.Core;
 using Application.Logs;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
@@ -29,6 +31,10 @@ namespace API.Extensions
 
             // Add AutoMapper to services
             services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+
+            // Add FluentValidator to services
+            services.AddFluentValidationAutoValidation();
+            services.AddValidatorsFromAssemblyContaining<Create>();
 
             return services;
         }
