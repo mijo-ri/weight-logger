@@ -1,3 +1,8 @@
+## ToDo
+
+- [ ] Paging, Sorting and Filtering
+- [ ] Client app
+
 ## Requirements
 
 - donet-ef is installed `dotnet tool install --global dotnet-ef --version 7.0.9`

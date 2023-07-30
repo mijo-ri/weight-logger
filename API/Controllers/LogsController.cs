@@ -33,6 +33,7 @@ namespace API.Controllers
             return HandleResult(await Mediator.Send(new Create.Command { Log = log }));
         }
 
+        [Authorize(Policy = "IsLogOwner")]
         [HttpPut("{id}")] // api/logs/{id}
         public async Task<IActionResult> EditLog(Guid id, Log log)
         {
@@ -40,6 +41,7 @@ namespace API.Controllers
             return HandleResult(await Mediator.Send(new Edit.Command { Log = log }));
         }
 
+        [Authorize(Policy = "IsLogOwner")]
         [HttpDelete("{id}")] // api/logs/{id}
         public async Task<IActionResult> DeleteLog(Guid id)
         {

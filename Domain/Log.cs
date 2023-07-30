@@ -5,5 +5,6 @@
         public Guid Id { get; set; }
         public DateOnly Date { get; set; }
         public float Weight { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }
