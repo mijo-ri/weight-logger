@@ -1,6 +1,6 @@
 ## ToDo
 
-- [ ] Paging, Sorting and Filtering
+- [x] Paging, Sorting and Filtering
 - [ ] Client app
 
 ## Requirements

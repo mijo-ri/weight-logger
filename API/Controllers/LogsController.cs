@@ -12,13 +12,13 @@ namespace API.Controllers
     public class LogsController : BaseApiController
     {
         [HttpGet] // api/logs
-        public async Task<IActionResult> GetLogs()
+        public async Task<IActionResult> GetLogs([FromQuery]LogParams param)
         {
             // Get logs directly from entity framework
             //return await _context.Logs.ToListAsync();
 
             // Get logs from mediator which uses entity framework
-            return HandleResult(await Mediator.Send(new List.Query()));
+            return HandleResult(await Mediator.Send(new List.Query { Params = param }));
         }
 
         [HttpGet("{id}")] // api/logs/{id}
@@ -28,14 +28,14 @@ namespace API.Controllers
         }
 
         [HttpPost] // api/logs
-        public async Task<IActionResult> CreateLog(Log log)
+        public async Task<IActionResult> CreateLog(LogDto log)
         {
             return HandleResult(await Mediator.Send(new Create.Command { Log = log }));
         }
 
         [Authorize(Policy = "IsLogOwner")]
         [HttpPut("{id}")] // api/logs/{id}
-        public async Task<IActionResult> EditLog(Guid id, Log log)
+        public async Task<IActionResult> EditLog(Guid id, LogDto log)
         {
             log.Id = id;
             return HandleResult(await Mediator.Send(new Edit.Command { Log = log }));
