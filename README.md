@@ -1,7 +1,14 @@
 ## ToDo
 
+### Backend
+
 - [x] Paging, Sorting and Filtering
-- [ ] Client app
+
+### Frontend
+
+- [ ] Logs
+- [ ] Routing
+- [ ] Login
 
 ## Requirements
 
@@ -17,6 +24,10 @@ dotnet ef migrations add <MigrationName> -s API -p Persistence
 ```
 
 ### Update database
+
+The database is updated after every startup because of `await context.Database.MigrateAsync();` in Program.cs.
+
+Use following command to update it manually.
 
 ```
 dotnet ef database update -s API -p Persistence
