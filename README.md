@@ -7,6 +7,7 @@
 
 ### Frontend
 
+- [ ] Get current user after hard reload
 - [ ] Logs
 - [ ] Routing
 - [ ] Login

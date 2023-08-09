@@ -3,7 +3,7 @@ import React from 'react';
 import { RouterProvider } from 'react-router-dom';
 
 import AuthProvider from './auth/AuthContext';
-import router from './app/router/Routes';
+import router from './config/routesConfig';
 
 // Axios configuration
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;

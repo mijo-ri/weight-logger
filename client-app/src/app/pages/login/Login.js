@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { useAuth } from '../../auth/AuthContext';
-import TextField from '../../app/common/form/TextField';
+import TextField from '../../components/form/TextField';
 
 const Login = () => {
   const validationSchema = yup.object().shape({
@@ -13,10 +13,16 @@ const Login = () => {
   });
 
   const { control, handleSubmit } = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
     resolver: yupResolver(validationSchema),
   });
 
   const { login, isAuthenticated } = useAuth();
+
+  console.log('isAuthenticated', isAuthenticated);
 
   const onSubmit = (data) => {
     console.log('data', data);

@@ -1,16 +1,22 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import Login from '../../features/login/Login';
 import Layout from '../layout/Layout';
+import Login from '../pages/login/Login';
+import RequireAuth from '../auth/RequireAuth';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />,
+    element: <RequireAuth />,
     children: [
       {
-        path: 'logs',
-        element: <div>Logs</div>,
+        element: <Layout />,
+        children: [
+          {
+            path: 'logs',
+            element: <div>Logs</div>,
+          },
+        ],
       },
     ],
   },
