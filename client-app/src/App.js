@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React from 'react';
+import { RouterProvider } from 'react-router-dom';
 
 import AuthProvider from './auth/AuthContext';
-import Login from './features/login/Login';
+import router from './app/router/Routes';
 
+// Axios configuration
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 if (localStorage.token) {
   axios.defaults.headers.common[
@@ -16,7 +18,7 @@ if (localStorage.token) {
 const App = () => {
   return (
     <AuthProvider>
-      <Login />
+      <RouterProvider router={router} />
     </AuthProvider>
   );
 };

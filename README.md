@@ -3,12 +3,14 @@
 ### Backend
 
 - [x] Paging, Sorting and Filtering
+- [ ] Normalize errors
 
 ### Frontend
 
 - [ ] Logs
 - [ ] Routing
 - [ ] Login
+- [ ] Normalize errors
 
 ## Requirements
 

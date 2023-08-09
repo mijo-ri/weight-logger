@@ -1,12 +1,20 @@
 import { useForm } from 'react-hook-form';
+import { Button } from '@mui/material';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
 import { useAuth } from '../../auth/AuthContext';
+import TextField from '../../app/common/form/TextField';
 
 const Login = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const validationSchema = yup.object().shape({
+    email: yup.string().required().email(),
+    password: yup.string().required(),
+  });
+
+  const { control, handleSubmit } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
 
   const { login, isAuthenticated } = useAuth();
 
@@ -19,21 +27,18 @@ const Login = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <input
-          type='text'
-          placeholder='Email'
-          {...register('email', { required: true })}
-        />
+        <TextField control={control} name='email' placeholder='Email' />
       </div>
       <div>
-        <input
+        <TextField
+          control={control}
+          name='password'
           type='password'
           placeholder='Password'
-          {...register('password', { required: true })}
         />
       </div>
       <div>
-        <input type='submit' value='Login' />
+        <Button type='submit'>Login</Button>
       </div>
     </form>
   );
